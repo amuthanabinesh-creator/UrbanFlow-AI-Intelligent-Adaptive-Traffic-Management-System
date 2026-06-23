@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #059669;
+  --accent: #0891b2;
+  --secondary: #dc2626;
+  --warning: #d97706;
+  --background: #eef2f7;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(5, 150, 105, 0.06), transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(8, 145, 178, 0.05), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(124, 58, 237, 0.03), transparent 60%);
+  color: #1e293b;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+}
+
+@layer components {
+
+  /* Light frosted glass — more vibrant */
+  .glass {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .glass-vibrant {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.06),
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+/* City Grid Background */
+.city-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridFlow 20s linear infinite;
+  will-change: transform;
+}
+
+@keyframes gridFlow {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(60px, 60px, 0);
+  }
+}
+
+/* Shimmer — vibrant light mode */
+.shimmer-effect {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes animate-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: animate-shimmer 3s linear infinite;
+}
+
+/* Signal glow bloom — vibrant on light */
+.signal-glow-green {
+  box-shadow: 0 0 18px rgba(5, 150, 105, 0.6), 0 0 60px rgba(5, 150, 105, 0.25), 0 0 100px rgba(5, 150, 105, 0.08);
+}
+
+.signal-glow-yellow {
+  box-shadow: 0 0 18px rgba(217, 119, 6, 0.6), 0 0 60px rgba(217, 119, 6, 0.25), 0 0 100px rgba(217, 119, 6, 0.08);
+}
+
+.signal-glow-red {
+  box-shadow: 0 0 18px rgba(220, 38, 38, 0.6), 0 0 60px rgba(220, 38, 38, 0.25), 0 0 100px rgba(220, 38, 38, 0.08);
+}
+
+/* Emergency flash */
+@keyframes emergencyFlash {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.emergency-flash {
+  animation: emergencyFlash 0.8s ease-in-out infinite;
+}
+
+/* Congestion pulse */
+@keyframes congestionPulse {
+
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.congestion-pulse {
+  animation: congestionPulse 1.5s ease-in-out infinite;
+}
+
+/* Ripple effect for buttons */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(0, 0, 0, 0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.ripple-effect:active::after {
+  opacity: 1;
+}
+
+/* Scan line effect */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/* Float */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+/* Green wave */
+@keyframes greenWave {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.8, 0.8, 1);
+  }
+
+  50% {
+    opacity: 0.25;
+    transform: scale3d(1.2, 1.2, 1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale3d(1.5, 1.5, 1);
+  }
+}
+
+.green-wave {
+  animation: greenWave 2s ease-out infinite;
+}
+
+/* Fade in for list items */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
